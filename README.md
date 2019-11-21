@@ -15,4 +15,10 @@ GetFileTitle(Fichier)
 
 GetAbOrRs(Fichier)
 
+CreateFile() 
+// Ajouter au fichier 
+GetFileName(Fichier)  
+GetFileTitle(Fichier) 
+GetAbOrRs(Fichier)
+
 AddFileInThisFolder(Folder)
