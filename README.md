@@ -22,3 +22,5 @@ GetFileTitle(Fichier)
 GetAbOrRs(Fichier)
 
 AddFileInThisFolder(Folder)
+
+time real
