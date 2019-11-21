@@ -3,16 +3,16 @@ TP2 Génie Logiciel - Scrum
 
 //Expression Reguliers - RegeXP
 
-GetFilesOfThis Folder
+GetFilesOfThis Folder(Folder)
 
-CreateFolder
+CreateFolder(Emplacement)
 
-ConvertPdfToText
+ConvertPdfToText(FichierPdf)
 
-GetFileName
+GetFileName(Fichier)
 
-GetFileTitle
+GetFileTitle(Fichier)
 
-GetAbOrRs
+GetAbOrRs(Fichier)
 
-CreateFileInThisFolder
+AddFileInThisFolder(Folder)
