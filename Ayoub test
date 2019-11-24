@@ -1,0 +1,50 @@
+#include <dirent.h> 
+#include <stdio.h> 
+#include <stdlib.h>
+ #include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+
+
+int Parseur(char* repertoire) {
+  DIR *d;
+  struct dirent *dir;
+   char command[200];
+      char folder[200];
+  sprintf(folder, "%s/folder",repertoire);
+  
+  struct stat st = {0};
+
+if (stat(folder, &st) == -1) {
+    mkdir(folder, 0700);
+}
+else { rmdir(folder);
+	mkdir(folder, 0700);
+
+}
+  
+  d = opendir(repertoire);
+ if (d) {
+  
+ 
+     while ((dir = readdir(d)) != NULL) {
+      printf("%s\n", dir->d_name);
+    }
+    
+    
+    closedir(d);
+  }
+//  sprintf(command, "ls -l %s",repertoire);
+//    system(command);
+  return(0);
+}
+
+
+
+int main(int argc, char  *argv[])
+{
+
+    
+    Parseur(argv[1]);
+}
