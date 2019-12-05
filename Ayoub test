@@ -1,3 +1,5 @@
+
+
 #include <dirent.h> 
 #include <stdio.h> 
 #include <stdlib.h>
@@ -7,44 +9,66 @@
 
 
 
-int Parseur(char* repertoire) {
-  DIR *d;
+int main(int argc, char  *argv[]) {
+
+
+    
+  
+  char *repertoire =argv[1] ;
+      
+       DIR *d;
   struct dirent *dir;
-   char command[200];
-      char folder[200];
+   char command[100];
+       char folder[100];
+
+ //   char movesrc[100];
+   // char movedes[100];
+    //char pdf[100] ;
+    //char txt[100];
+
+
+  // définir le nouveau sous dossier    
   sprintf(folder, "%s/folder",repertoire);
   
   struct stat st = {0};
-
-if (stat(folder, &st) == -1) {
-    mkdir(folder, 0700);
+//creer le nouveau sous dossier (folder)
+/*if (stat(folder, &st) == -1) {
+    mkdir(folder, 0777);
 }
 else { rmdir(folder);
-	mkdir(folder, 0700);
+	mkdir(folder, 0777);}*/
 
-}
-  
+//ouvrir répértoire
+ 
   d = opendir(repertoire);
  if (d) {
   
- 
+ //boucler répértoire
      while ((dir = readdir(d)) != NULL) {
-      printf("%s\n", dir->d_name);
-    }
-    
+		   char movesrc[100]={0} ;
+     char	 movedes[100]={0} ;
+   char  pdf[100]= {0} ;
+    char	 txt[100]={0} ;
+    printf("%s\n", dir->d_name);
+      // stocker le nom de pdf et fichiers texte dans des variables
+      sprintf(pdf, "%s/%s",repertoire,dir->d_name);
+       sprintf(txt, "%s/%s.txt",repertoire,dir->d_name);
+       
+//stocker la  commande dans une variable
+       sprintf(command, "pdftotext %s %s",pdf,txt);
+       system(command);
+           
+	// et ca pour le déplacement n'est pas utilisé encore 
+    /*    sprintf(movesrc, "%s.txt",pdf);
+       sprintf(movedes, "%s/%s.txt",folder,dir->d_name);  
+       
+           rename(movesrc, movedes);*/
+  
+ }
+
     
     closedir(d);
   }
-//  sprintf(command, "ls -l %s",repertoire);
-//    system(command);
-  return(0);
-}
-
-
-
-int main(int argc, char  *argv[])
-{
-
-    
-    Parseur(argv[1]);
-}
+  return 0 ;
+   }
+   
